@@ -9,7 +9,7 @@ cd "$(dirname "$0")/.."
 APP="build/Morgenseiten.app"
 
 rm -rf "$APP"
-mkdir -p "$APP/Contents/MacOS"
+mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
 swiftc -O -swift-version 6 -parse-as-library \
     -target "$(uname -m)-apple-macosx14.0" \
@@ -17,6 +17,7 @@ swiftc -O -swift-version 6 -parse-as-library \
     -o "$APP/Contents/MacOS/Morgenseiten"
 
 cp Resources/Info.plist "$APP/Contents/Info.plist"
+cp Resources/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
 
 # Ad-hoc signature so macOS runs the bundle locally.
 codesign --force --sign - "$APP"
