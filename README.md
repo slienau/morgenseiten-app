@@ -1,0 +1,34 @@
+# Morgenseiten
+
+A minimal macOS editor for morning pages: exactly 750 words, then you are done.
+
+- Plain text editor, nothing else
+- Progress bar and word counter towards 750 words
+- Typing stops at 750 words; the copy button unlocks once you reach them
+- The draft is kept between launches until you start a new page
+
+The user interface is in German.
+
+## Requirements
+
+- macOS 14 or later
+- Swift 6 toolchain (the Xcode Command Line Tools are enough)
+
+## Build
+
+```bash
+./scripts/build-app.sh
+```
+
+This creates `build/Morgenseiten.app`. Move it to `/Applications` if you like.
+
+The script calls `swiftc` directly, so there is no Xcode project and no
+`Package.swift`.
+
+## Layout
+
+- `Sources/Morgenseiten/WordLimit.swift` – word counting and the 750-word clamp
+- `Sources/Morgenseiten/ContentView.swift` – editor, progress bar, copy button
+- `Sources/Morgenseiten/MorgenseitenApp.swift` – app entry point and window
+- `Resources/Info.plist` – bundle metadata
+- `scripts/build-app.sh` – builds and bundles the app
